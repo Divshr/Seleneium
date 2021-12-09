@@ -1,0 +1,51 @@
+package MavenSelenium.Selenium12;
+
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class FreshSalesLogin {
+public static void main(String[] args) {
+		
+		// System Property for chrome Driver   
+	    System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Selenium\\chromedriver.exe");  
+		
+	    // Create a new instance of the Chrome driver 
+		WebDriver driver = new ChromeDriver();
+		
+		//storing the url in string variable 
+		String url = "https://www.freshworks.com/";
+		//navigate to URL
+		driver.get(url);
+		
+		//implicit wait
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//find product using Xpath and store in txt variable
+		WebElement txt = driver.findElement(By.xpath("/html/body/header/nav/div/div/ul/li[1]"));
+		
+		Actions builder = new Actions(driver);
+		//move to element txt
+		Action seriesOfActions = builder.moveToElement(txt).build();
+		//perform acction
+		seriesOfActions.perform();
+		
+		//finding freshsales and navigating to it
+		driver.findElement(By.xpath("/html/body/header/nav/div/div/ul/li[1]/ul/div[1]/div[1]/div/li[2]")).click();
+		//accepting cookies
+		driver.findElement(By.xpath("//*[@id=\"onetrust-accept-btn-handler\"]")).click();
+		//Click on login
+		driver.findElement(By.xpath("/html/body/header/nav/div[2]/div/ul[1]/li[6]/a")).click();
+		//Enter domain name
+		driver.findElement(By.xpath("//*[@id=\"fsales_login_form\"]/fieldset[1]/div/div[1]/input")).sendKeys("software-388543689924217438");
+		//click on Proceed
+		driver.findElement(By.xpath("//*[@id=\"fsales_login_form\"]/fieldset[2]/input")).click();
+		
+	}
+}
