@@ -1,0 +1,64 @@
+package MavenSelenium.Selenium12;
+
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class Company {
+public static void main(String[] args) {
+		
+		// System Property for chrome Driver   
+	    System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Selenium\\chromedriver.exe");  
+		
+	    // Create a new instance of the Chrome driver 
+		WebDriver driver = new ChromeDriver();
+		
+		//storing the url in string variable 
+		String url = "https://www.freshworks.com/";
+		//navigate to URL
+		driver.get(url);
+		
+		//implicit wait
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//accepting cookies
+	    driver.findElement(By.xpath("//*[@id=\"onetrust-accept-btn-handler\"]")).click();
+	    
+	    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//find Company using Xpath and store in txt variable
+		WebElement txt = driver.findElement(By.xpath("/html/body/header/nav/div/div/ul/li[3]/span"));
+				
+		Actions builder = new Actions(driver);
+		//move to element txt
+		Action seriesOfActions = builder.moveToElement(txt).build();
+		//perform acction
+		seriesOfActions.perform();
+		//click on about
+		driver.findElement(By.xpath("/html/body/header/nav/div/div/ul/li[3]/ul/li[1]")).click();
+		//leadership
+		//driver.findElement(By.xpath("/html/body/header/nav/div/div/ul/li[3]/ul/li[2]")).click();
+		//Events:Refresh2021
+		//driver.findElement(By.xpath("/html/body/header/nav/div/div/ul/li[3]/ul/li[3]")).click();
+		//Partners
+		//driver.findElement(By.xpath("/html/body/header/nav/div/div/ul/li[3]/ul/li[4]")).click();
+		//philanthropy
+		//driver.findElement(By.xpath("/html/body/header/nav/div/div/ul/li[3]/ul/li[5]")).click();
+		//Life at fresh work
+		//driver.findElement(By.xpath("/html/body/header/nav/div/div/ul/li[3]/ul/li[6]")).click();
+		//press
+		//driver.findElement(By.xpath("/html/body/header/nav/div/div/ul/li[3]/ul/li[7]")).click();
+		//investor
+		//driver.findElement(By.xpath("/html/body/header/nav/div/div/ul/li[3]/ul/li[8]")).click();
+		//contact us
+		//driver.findElement(By.xpath("/html/body/header/nav/div/div/ul/li[3]/ul/li[9]")).click();
+		
+		driver.close();
+	}
+}
